@@ -1,0 +1,54 @@
+<h1>Reactive Form</h1>
+
+<form [formGroup]="addLoanTypeForm">
+    <label>Loan Name</label><br>
+    <input type="text" formControlName="loanName" name="loanName" (keydown)="changeValue()" id="">
+    <span *ngIf="addLoanTypeForm.get('loanName')!.hasError('required') && addLoanTypeForm.get('loanName')!.touched">The loan name is required</span>
+    <span *ngIf="addLoanTypeForm.get('loanName')!.hasError('minlength') && addLoanTypeForm.get('loanName')!.touched">The loan name should be minimum 5 character</span>
+    <br><br>
+
+    <label for="">Loan Description</label><br>
+    <textarea name="loanDescription" formControlName="loanDescription"  id="" cols="30" rows="3"></textarea>
+    <br><br>
+
+    <label for="">Loan Type</label><br>
+    <input type="text" name="" (keyup)="changeStatus()" formControlName="loanType" id="">
+    <br><br>
+
+    <label for="">Gender</label><br>
+    <input type="radio" name="genderControl" value="female" formControlName="genderControl" id=""> Female
+    <input type="radio" name="genderControl" value="male" formControlName="genderControl" id="">Male
+    <br><br>
+
+    <label for="">State</label><br>
+    <select name="" formControlName="state" id="">
+        <option value="Gujrat">Gujrat</option>
+        <option value="MP">MP</option>
+        <option value="RJ">Rj</option>
+    </select>
+    <br><br>
+
+    <div formArrayName="users">
+      <div *ngFor="let con of users.controls;let i=index">
+          <div [formGroupName]="i">
+            <input type="text"  formControlName="name" >
+            <input type="text"  formControlName="age" >
+            <input type="text"  formControlName="dept" >
+            <button (click)="removeUser(i)">Remove</button>
+          </div>
+      
+      </div>
+     </div>
+     <input type="button" value="Add" (click)="AddUsers()"> 
+
+     <br><br>
+    <input type="checkbox" name="" formControlName="terms" id="">Accept terms and condition
+    <br><br>
+
+    <input type="submit" value="AddLoan" [disabled]="!addLoanTypeForm.valid" (click)="addLoanType()"> &nbsp; 
+    <input type="button" value="SetValue" (click)="setLoanValue()"> &nbsp;
+    <input type="reset" value="ResetValue" (click)="resetLoanValue()"> &nbsp;
+    <input type="button" value="ReadValue" (click)="readLoanValue()"> 
+   
+   
+</form>

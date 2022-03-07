@@ -1,0 +1,27 @@
+<h1>Template Driven Form</h1>
+
+<form #loginForm="ngForm" (submit)="addCustomer(loginForm)">
+
+    <label for="">First Name:</label><br>
+    <input type="text" name="firstname" [(ngModel)]="firstname" minlength="5" id="firstname" required><br><br>
+    
+    <label for=""> State:</label><br>
+    <select name="choose" [(ngModel)]="choose" id="choose">
+        <option value="Gujrat">Gujrat</option>
+        <option value="MP">MP</option>
+        <option value="RJ">RJ</option>
+    </select> <br><br>
+
+    <label for="">Description:</label><br>
+    <textarea name="description" [(ngModel)]="description" id="description" cols="30" rows="3"></textarea><br><br>
+
+    <input type="checkbox" name="terms" [(ngModel)]="terms" id="terms" required>Accept terms and condition<br><br>
+
+    <input type="submit" [disabled]="!loginForm.valid" value="Submit"><br> <br>
+    <input type="reset" (click)="resetData(loginForm)" value="Reset"> <br><br>
+    <input type="button" value="SetData" (click)="setFormData(loginForm)">
+
+</form>
+<div>{{firstname}}</div>
+
+
